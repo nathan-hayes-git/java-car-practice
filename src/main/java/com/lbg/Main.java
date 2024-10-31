@@ -1,6 +1,10 @@
 package com.lbg;
 import com.lbg.classes.Car;
 import com.lbg.classes.CarColour;
+//import com.lbg.classes.SubCar;
+import com.lbg.classes.ISteerable;
+import com.lbg.classes.Vehicle;
+
 import java.util.Random;
 
 import static com.lbg.classes.CarColour.*;
@@ -8,6 +12,12 @@ import static com.lbg.classes.CarColour.*;
 
 public class Main {
     public static void main(String[] args) {
+//        javaPart1();
+        javaPart2();
+
+    }
+
+    private static void javaPart1() {
         System.out.printf("Hello and welcome!\n");
 //        Car bartCar = new Car();
 //        System.out.println(bartCar.getSpeed());
@@ -88,5 +98,42 @@ public class Main {
             }
         }
         System.out.printf("There are %s red cars, %s yellow cars, %s blue cars and %s black cars\n", redCount, yellowCount, blueCount, blackCount);
+
+        Car newCar = new Car("Vauxhaul", "Astra", RED);
+        System.out.println(newCar.toString());
+    }
+
+    private static void javaPart2() {
+        Vehicle v1 = new Vehicle();
+        Vehicle v2 = new Vehicle();
+        Vehicle v3 = new Vehicle(2, "LI45SMP");
+        Car car1 = new Car("Ford", "Fiesta", YELLOW);
+        Car car2 = new Car("Renault", "Cleo", BLUE);
+//        car1.setNumberOfWheels(4);
+        System.out.println(car1.toString());
+        System.out.println(car1.getNumberOfWheels());
+        System.out.println(v1);
+        System.out.println(v2);
+        System.out.println(v3);
+        String serviceInfo = car1.performService();
+        System.out.println(serviceInfo);
+        System.out.println(v3.performService());
+        System.out.println(car1.getRegistration());
+
+
+        Vehicle[] vehicles = {v1, v2, v3, car1, car2};
+        // This is an example of polymorphism!
+        for (Vehicle v: vehicles) {
+            System.out.println(v);
+            System.out.println(v.performService());
+        }
+//        SubCar sc = new SubCar();
+        System.out.println(car1.turnLeft());
+        ISteerable[] steerables = {car1, car2};
+
+        for (ISteerable s: steerables) {
+            System.out.println(s.turnRight());
+            System.out.println(s.turnLeft());
+        }
     }
 }
